@@ -40,3 +40,11 @@ jobs:
         run: composer install --no-progress --prefer-dist --optimize-autoloader
 
       # 5. Copy environment file
+      - name: Create .env file
+        run: |
+          cp .env.example .env
+          php artisan key:generate
+
+      # 6. Run tests
+      - name: Run PHPUnit tests
+        run: php artisan test
